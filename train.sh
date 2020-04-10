@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+$GPU_IDX = 1
+CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPU_IDX python train.py

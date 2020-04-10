@@ -1,0 +1,62 @@
+RECIPE: 'no_transform' #'resnet50_512_base'
+TRAIN_DIR: '_results/'
+DATA_DIR: '../data'
+
+PARALLEL: True
+DEBUG: False
+DELETE_LOGPATH: True
+SKIP_VALIDATION: True
+EXPERIMENT:
+  INPUT_SIZE_LIST: [224] #[224]
+  BATCH_SIZE_LIST : [16] #[16]
+  MODEL_LIST : ['EfficientNetB7'] #'resnet34'] #,'resnet34'] #['EfficientNetB1','EfficientNetB2','EfficientNetB3','EfficientNetB4','EfficientNetB5']
+  KFOLD_IND_LIST : [0,1,2,3,4] #[0,1,2,3,4]
+  # ['resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152', 'seresnet18', 'seresnet34', 'seresnet50',
+  # 'seresnet101', 'seresnet152', 'seresnext50', 'seresnext101', 'senet154', 'resnet50v2', 'resnet101v2',
+  # 'resnet152v2', 'resnext50', 'resnext101', 'vgg16', 'vgg19',
+  # 'densenet121', 'densenet169', 'densenet201',
+  # 'inceptionresnetv2', 'inceptionv3', 'xception', 'nasnetlarge', 'nasnetmobile', 'mobilenet', 'mobilenetv2']
+
+  # EfficientNetB0, to EfficientNetB7
+  # not good model = ['seresnet101','resnet50v2,'resnet101v2',]
+
+  # model_list = ['densenet121','seresnext50'] done##
+
+TRAIN:
+  BATCH_SIZE: 16 # 16
+  NUM_EPOCHS: 30 # 20 #100 #50
+  DISPLAY: False
+
+EVAL:
+  BATCH_SIZE: 32
+  DISPLAY: False
+
+DATA:
+  IMG_H: 224 #224 #192 | 224 | 331 | 512
+  IMG_W: 224
+  KFOLD: -1 #5 # 5 # -1 disable
+  FOLD_IND: 0
+  CUTMIX_MIXUP: False
+
+TTA: 10
+
+MODEL:
+  NAME: 'resnet34' # resnet34 | resnet50 | efficientnet_b7
+  WEIGHT: 'imagenet' #'imagenet' #'imagenet' # 'None'
+  OUTPUT_ACTIVATION: 'softmax' #'softmax'
+  METRIC: 'sparse_categorical_accuracy'  # 'categorical_accuracy','sparse_categorical_accuracy','categorical_accuracy'|'accuracy' | 'sparse_categorical_accuracy'
+LOSS:
+  NAME: 'sparse_categorical_crossentropy' # 'categorical_crossentropy', 'sparse_categorical_crossentropy', 'categorical_focal_loss''
+  LABEL_SMOOTHING: False
+
+OPTIMIZER:
+  NAME: 'adam'
+  LR: 0.0001
+
+SCHEDULER:
+  NAME: 'LearningRateScheduler'
+  PARAMS:
+    LB_MAX: 0.00005
+    LB_MIN: 0.00001
+#    milestones: [5,30,50,70]
+#    gamma: 0.5

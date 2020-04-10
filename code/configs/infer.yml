@@ -1,0 +1,44 @@
+RECIPE: 'eff7_base'
+TRAIN_DIR: '_results/'
+DATA_DIR: '../data'
+
+PRINT_EVERY: 10
+DEBUG: False
+SKIP_VALIDATION: False
+
+get_best_weight: False
+get_wrong_label_check_and_f1_score_check: False
+
+EVAL:
+  BATCH_SIZE: 16
+  DISPLAY: False
+
+DATA:
+  IMG_H: 512 #512 #192
+  IMG_W: 512 #512 #192
+  RESIZE: True
+
+TTA: 0 #10
+
+#MODEL1_INFER_DIR: "./lb_submit/eff7_512_1fold/epoch_017_0.9574.h5"
+#MODEL2_INFER_DIR: './lb_submit/eff7_512_allmodel/all_models.0029-0.0197.h5'
+
+#MODEL1_INFER_DIR: "./lb_submit/eff7_512_1fold/epoch_017_0.9574.h5" ## 512
+#MODEL2_INFER_DIR: "None"
+
+MODEL1_INFER_DIR: "./lb_submit/eff7_s512_only_transform_loss_noise_student_0.0147.h5" ## 512
+MODEL2_INFER_DIR: "./lb_submit/dense201_s512_only_trasnform_loss_0.0017.h5"
+#MODEL1_INFER_DIR: "./lb_submit/dense201_s512_loss_0.0055.h5" ## 512
+#MODEL2_INFER_DIR: "./lb_submit/eff7_s512_loss_0.0153.h5"
+#MODEL1_INFER_DIR: "./lb_submit/eff7_2_3_fold_ensemble/fold2_epoch_017_0.9341.h5" ## 224
+#MODEL2_INFER_DIR: "./lb_submit/eff7_2_3_fold_ensemble/fold3_epoch_017_0.9476.h5" #'None' ##224
+
+
+#MODEL:
+#  NAME: 'efficientnet_b7'
+#  WEIGHT: 'None' #'imagenet' # 'None'
+  # smp
+#  ARCHITECTURE: 'Unet'
+#  ENCODER: 'resnet18'
+#  NAME: 'FastSCNN'
+
